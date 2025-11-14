@@ -9,7 +9,6 @@ env = Env()
 env.read_env()
 
 
-
 llm = ChatOpenAI(model="gpt-5-mini", temperature=0)
 tools = [TavilySearch()]
 agent = create_agent(model=llm, tools=tools)
