@@ -6,6 +6,7 @@ from langchain.agents import create_agent
 from langchain.tools import tool
 from langchain_core.messages import HumanMessage
 from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_tavily import TavilySearch
 
 env = Env()
@@ -20,10 +21,12 @@ class Source(BaseModel):
 class AgentResponse(BaseModel):
     """Schema for the agent's response."""
     answer: str = Field(description="The agent's answer to the query")
-    sources: List[Source] = Field(default_factory=list, description="The list ofsources used to generate the answer")
+    sources: List[Source] = Field(default_factory=list, description="The list of sources used to generate the answer")
     
 
-llm = ChatOpenAI(model="gpt-5.1", temperature=0)
+llm_openai = ChatOpenAI(model="gpt-5.1", temperature=0)
+llm_googlegenai = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+llm = llm_googlegenai
 tools = [TavilySearch()]
 agent = create_agent(model=llm, tools=tools, response_format=AgentResponse)
 

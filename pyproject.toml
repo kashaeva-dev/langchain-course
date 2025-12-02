@@ -10,6 +10,7 @@ dependencies = [
     "isort>=7.0.0",
     "langchain>=1.0.5",
     "langchain-deepseek>=1.0.1",
+    "langchain-google-genai>=3.2.0",
     "langchain-openai>=1.0.2",
     "langchain-tavily>=0.2.13",
     "tavily-python>=0.7.13",
